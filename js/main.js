@@ -1,4 +1,5 @@
 import { Game } from './game.js';
+import { setupInput } from './input.js';
 
 const board = document.getElementById('game-board');
 
@@ -72,6 +73,10 @@ const startGame = () => {
             clearInterval(interval);
         }
     }, game.speed);
+
+    setupInput(direction => {
+        game.setDirection(direction);
+    });
 }
 
 startGame();

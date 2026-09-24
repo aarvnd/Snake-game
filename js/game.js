@@ -25,6 +25,23 @@ export class Game {
     }
 
     // set direction
+    setDirection(direction) {
+
+        const opposite = { // Define opposite directions
+            UP: "DOWN",
+            DOWN: "UP",
+            LEFT: "RIGHT",
+            RIGHT: "LEFT"
+        };
+
+        // ignore a 180° turn, the snake would run into itself
+        if (opposite[this.direction] === direction) {
+            return;
+        }
+
+        this.nextDirection = direction;
+
+    }
 
     // update the game state
     update() {
