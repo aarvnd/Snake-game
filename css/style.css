@@ -48,9 +48,9 @@ body {
 }
 
 .snake {
-    background: green;
+    background: #1d6700;
 }
 
 .head {
-    background: darkgreen;
+    background: #640000;
 }
