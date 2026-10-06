@@ -2,6 +2,7 @@ import { Game } from './game.js';
 import { setupInput } from './input.js';
 
 const board = document.getElementById('game-board');
+const status = document.getElementById('status');
 
 let game;
 let interval;
@@ -56,6 +57,9 @@ const startGame = () => {
     // instance of game
     game = new Game();
 
+    board.classList.remove("game-over");
+    status.textContent = "";
+
     // create a board
     createBoard();
 
@@ -71,6 +75,8 @@ const startGame = () => {
 
         if (!game.running) {
             clearInterval(interval);
+            board.classList.add("game-over");
+            status.textContent = "Game over";
         }
     }, game.speed);
 
