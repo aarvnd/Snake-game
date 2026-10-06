@@ -22,9 +22,16 @@ export function setupInput(changeDirection) {
     // the event listener will be triggered and execute the provided callback function.
     document.addEventListener("keydown", event => {
 
-        const direction = keyMap[event.key];
+        // leave browser shortcuts alone (Cmd+W, Ctrl+R, ...)
+        if (event.metaKey || event.ctrlKey || event.altKey) return;
+
+        // single letters are lowercased so WASD works with Caps Lock or Shift
+        const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
+        const direction = keyMap[key];
 
         if (direction) {
+            // stop arrow keys from scrolling the page while playing
+            event.preventDefault();
             changeDirection(direction);
         }
 
