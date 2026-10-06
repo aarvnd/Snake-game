@@ -64,11 +64,34 @@ export class Game {
             y: head.y + movement[this.direction].y
         };
 
+        if (this.isOutOfBounds(newHead) || this.hitsBody(newHead)) {
+            this.endGame();
+            return;
+        }
+
         this.snake.move(newHead);
         this.snake.removeTail();
 
     }
 
+    // true when the position is outside the 20x20 grid
+    isOutOfBounds(position) {
+        return position.x < 0 || position.y < 0 ||
+            position.x >= this.columns || position.y >= this.rows;
+    }
+
+    // true when the position lands on the snake's body; the tail is skipped
+    // because it moves away on this same tick
+    hitsBody(position) {
+        return this.snake
+            .getBody()
+            .slice(0, -1)
+            .some(segment => segment.x === position.x && segment.y === position.y);
+    }
+
     // end game
+    endGame() {
+        this.running = false;
+    }
 
 }
