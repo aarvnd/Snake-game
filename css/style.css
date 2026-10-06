@@ -55,6 +55,21 @@ body {
     background: #640000;
 }
 
+/* shown when the snake hits a wall or itself */
+#game-board.game-over {
+    border-color: #b00020;
+    opacity: 0.6;
+}
+
+.status {
+    min-height: 1.5em;
+    margin-top: 10px;
+
+    text-align: center;
+    font-weight: bold;
+    color: #b00020;
+}
+
 /* direction buttons */
 button {
     padding: 10px 15px;
